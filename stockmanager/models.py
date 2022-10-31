@@ -13,11 +13,14 @@ class Product(models.Model):
 
 @receiver(pre_save, sender=Product)
 def on_change(sender, instance: Product, **kwargs):
-  previous = Product.objects.get(id=instance.id)
-  changed_fields = []
-  for field in Product._meta.get_fields():
-    if getattr(instance, field.name) != getattr(previous, field.name):
-      changed_fields.append(field.name)
-  
-  if len(changed_fields) > 0:
-    product_update_email(instance.id, changed_fields)
+  try:
+    previous = Product.objects.get(id=instance.id)
+    changed_fields = []
+    for field in Product._meta.get_fields():
+      if getattr(instance, field.name) != getattr(previous, field.name):
+        changed_fields.append(field.name)
+    
+    if len(changed_fields) > 0:
+      product_update_email(instance.id, changed_fields)
+  except:
+    pass
