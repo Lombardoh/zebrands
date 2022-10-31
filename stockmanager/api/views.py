@@ -25,7 +25,7 @@ class ProductViewSet(viewsets.ModelViewSet):
   def retrieve(self, *args, **kwargs):
     instance = self.get_object()
     serializer = self.get_serializer(instance=instance)
-    if not self.request.user.is_staff:
+    if self.request.user.is_anonymous:
       Product.objects.filter(id = self.kwargs['pk']).update(anonymous_query = F('anonymous_query')+1)
     return Response(serializer.data)
     
