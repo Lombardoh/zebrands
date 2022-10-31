@@ -10,7 +10,7 @@ SECRET_KEY = 'django-insecure-!cs6h8q&n7@+a@$!xks^#p8ab3sp2e!)8mochp=2-l18kg(pxm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['hlombardo-zebrands.herokuapp.com']
 
 # Application definition
 
@@ -24,6 +24,8 @@ INSTALLED_APPS = [
   'django.contrib.messages',
   'django.contrib.staticfiles',
   'rest_framework.authtoken',
+  'whitenoise',
+  'gunicorn',
   #custom modules
   'stockmanager',
 ]
@@ -36,6 +38,7 @@ MIDDLEWARE = [
   'django.contrib.auth.middleware.AuthenticationMiddleware',
   'django.contrib.messages.middleware.MessageMiddleware',
   'django.middleware.clickjacking.XFrameOptionsMiddleware',
+  'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'zebrands.urls'

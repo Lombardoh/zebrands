@@ -1,0 +1,1 @@
+web: gunicorn zebrands.wsgi --log-filee -
