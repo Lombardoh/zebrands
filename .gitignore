@@ -3,7 +3,6 @@ venv
 .env
 
 # Custom ignores
-migrations/
 *.vim
 
 # Default .gitignore from github.com/github/gitignore/Python.gitignore
